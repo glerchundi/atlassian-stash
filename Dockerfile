@@ -29,9 +29,12 @@ RUN mkdir -p /opt/stash && \
 ADD http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.35.tar.gz /tmp/mysql-connector.tar.gz
 RUN tar xvfz /tmp/mysql-connector.tar.gz -C /opt/stash/lib --strip 1 --wildcards --no-anchored 'mysql-connector-java-5.1.35-bin.jar'
 
-
 # directory in which stash will save persistent data
 ENV STASH_HOME /var/lib/stash
+
+# confd
+ADD https://github.com/glerchundi/confd/releases/download/v0.10.0-beta1/confd-0.10.0-beta1-linux-amd64 /usr/bin/confd
+RUN chmod 0755 /usr/bin/confd
 
 ##
 ## ROOTFS
