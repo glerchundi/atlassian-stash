@@ -1,0 +1,11 @@
+#!/usr/bin/execlineb -P
+with-contenv
+multisubstitute
+{
+  import -u -D"/ci/config" CONFD_PREFIX
+  import -u -D60 CONFD_INTERVAL
+  import -u -D"etcd" CONFD_BACKEND
+  import -u CONFD_BACKEND_ARGS
+  define CONFD_RELOAD_CMD "/usr/bin/s6-svscanctl -t /var/run/s6/services"
+}
+confd --interval="${CONFD_INTERVAL}" --prefix="${CONFD_PREFIX}" --tmpl-src="/etc/stash/stash-config.properties.tmpl" --tmpl-dest="/var/lib/stash/shared/stash-config.properties" --tmpl-reload-cmd="${CONFD_RELOAD_CMD}" ${CONFD_BACKEND} ${CONFD_BACKEND_ARGS}

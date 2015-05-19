@@ -1,0 +1,9 @@
+#!/usr/bin/execlineb -P
+
+with-contenv
+s6-setuidgid stash
+trap -x
+{
+  term { /opt/stash/bin/stop-stash.sh }
+}
+/opt/stash/bin/start-stash.sh -fg
