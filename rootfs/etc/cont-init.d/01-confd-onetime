@@ -1,8 +1,11 @@
 #!/usr/bin/execlineb -P
 with-contenv
+s6-envuidgid stash
 multisubstitute
 {
   import -u -D"/stash" CONFD_PREFIX
   import -u -D"env" CONFD_BACKEND
+  import -u -D0 UID
+  import -u -D0 GID
 }
-confd --onetime --prefix="${CONFD_PREFIX}" --tmpl-src="/etc/stash/stash-config.properties.tmpl" --tmpl-dest="/var/lib/stash/shared/stash-config.properties" ${CONFD_BACKEND}
+confd --onetime --prefix="${CONFD_PREFIX}" --tmpl-uid="${UID}" --tmpl-gid="${GID}" --tmpl-src="/etc/stash/stash-config.properties.tmpl" --tmpl-dest="/var/lib/stash/shared/stash-config.properties" ${CONFD_BACKEND}
