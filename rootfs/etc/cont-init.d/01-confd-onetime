@@ -2,8 +2,7 @@
 with-contenv
 multisubstitute
 {
-  import -u -D"/ci/config" CONFD_PREFIX
-  import -u -D"etcd" CONFD_BACKEND
-  import -u CONFD_BACKEND_ARGS
+  import -u -D"/stash" CONFD_PREFIX
+  import -u -D"env" CONFD_BACKEND
 }
-confd --onetime --prefix="${CONFD_PREFIX}" --tmpl-src="/etc/stash/stash-config.properties.tmpl" --tmpl-dest="/var/lib/stash/shared/stash-config.properties" ${CONFD_BACKEND} ${CONFD_BACKEND_ARGS}
+confd --onetime --prefix="${CONFD_PREFIX}" --tmpl-src="/etc/stash/stash-config.properties.tmpl" --tmpl-dest="/var/lib/stash/shared/stash-config.properties" ${CONFD_BACKEND}
