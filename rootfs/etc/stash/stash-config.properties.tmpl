@@ -1,6 +1,4 @@
-#com.mysql.jdbc.Driver
 jdbc.driver={{if exists "/driver"}}{{getv "/driver"}}{{end}}
-#jdbc:mysql://172.17.0.23:3307/stash?characterEncoding=utf8&useUnicode=true&sessionVariables=storage_engine%3DInnoDB
 jdbc.url={{if exists "/url"}}{{getv "/url"}}{{end}}
 jdbc.user={{if exists "/user"}}{{getv "/user"}}{{end}}
 jdbc.password={{if exists "/password"}}{{getv "/password"}}{{end}}
