@@ -1,4 +1,4 @@
-FROM quay.io/justcontainers/base:v0.7.2
+FROM quay.io/justcontainers/base:v0.8.1
 MAINTAINER Gorka Lerchundi Osa <glertxundi@gmail.com>
 
 ##
@@ -20,7 +20,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 RUN useradd -r -s /bin/false stash
 
 # atlassian stash
-ADD https://www.atlassian.com/software/stash/downloads/binary/atlassian-stash-3.9.1.tar.gz /tmp/atlassian-stash.tar.gz
+ADD https://www.atlassian.com/software/stash/downloads/binary/atlassian-stash-3.10.0.tar.gz /tmp/atlassian-stash.tar.gz
 RUN mkdir -p /opt/stash && \
     mkdir -p /opt/stash/conf/Catalina && \
     tar xvfz /tmp/atlassian-stash.tar.gz -C /opt/stash --strip 1 --owner stash --group stash
